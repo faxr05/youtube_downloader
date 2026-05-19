@@ -8,7 +8,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from yt_dlp import YoutubeDL
 
 # ================= CONFIG =================
-#load_dotenv()
+load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 DOWNLOAD_DIR = "downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
