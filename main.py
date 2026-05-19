@@ -8,7 +8,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from yt_dlp import YoutubeDL
 
 # ================= CONFIG =================
-load_dotenv()
+#load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
 DOWNLOAD_DIR = "downloads"
 os.makedirs(DOWNLOAD_DIR, exist_ok=True)
@@ -171,7 +171,7 @@ async def download_video(call: CallbackQuery, quality):
 
     await send_any_file(user_id, path, "video")
     os.remove(path)
-
+print("token ",os.getenv("BOT_TOKEN"))
 # ================= RUN =================
 async def main():
     await dp.start_polling(bot)
