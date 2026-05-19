@@ -157,11 +157,23 @@ async def download_video(call: CallbackQuery, quality):
             )
 
     ydl_opts = {
-        "format": ydl_format,
-        "outtmpl": f"{DOWNLOAD_DIR}/%(title)s.%(ext)s",
-        "merge_output_format": "mp4",
-        "progress_hooks": [hook]
+    "format": "bestaudio",
+    "outtmpl": f"{DOWNLOAD_DIR}/%(title)s.%(ext)s",
+    "progress_hooks": [hook],
+    "postprocessors": [{
+        "key": "FFmpegExtractAudio",
+        "preferredcodec": "mp3",
+        "preferredquality": "192"
+    }],
+    # --- BLOKDAN QOCHISH UCHUN YANGI QO'SHILGAN QISMI ---
+    "extractor_args": {
+        "youtube": {
+            "player_client": ["tv", "web_embedded"]
+        }
     }
+    # --------------------------------------------------
+    }
+    
 
     with YoutubeDL(ydl_opts) as ydl:
         info = ydl.extract_info(url)
